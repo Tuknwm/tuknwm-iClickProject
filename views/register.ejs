@@ -26,7 +26,7 @@
   <div class="KotakReg">
     <h2>Register</h2>
 
-    <form action="/register" method="POST">
+    <form onsubmit="return false;">
       <label for="username">Username:</label>
       <input
         type="text"
@@ -63,9 +63,7 @@
         required
       />
 
-      <p class="PsnErrorReg">
-        <%= typeof errorMessage !== 'undefined' ? errorMessage : '' %>
-      </p>
+      <p class="PsnErrorReg"></p>
       <button type="submit" class="SubmitReg">Register</button>
     </form>
 

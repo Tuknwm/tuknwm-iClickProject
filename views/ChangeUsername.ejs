@@ -2,7 +2,7 @@
 
 <div class="KotakUtamaUsername">
   <h2>Change Username</h2>
-  <form action="/ChangeUsername" method="POST">
+  <form onsubmit="return false;">
     <label for="New-username">New Username:</label>
     <input
       type="text_username"
@@ -20,13 +20,8 @@
       required
     />
 
-    <p class="PsnErrorLogUM">
-      <%= typeof errorMessage !== 'undefined' ? errorMessage : '' %>
-    </p>
-
-    <p class="PsnSuccessLogUM">
-      <%= typeof successMessage !== 'undefined' ? successMessage : '' %>
-    </p>
+    <p class="PsnErrorLogUM"></p>
+    <p class="PsnSuccessLogUM"></p>
     
     <button class="tombolsaveUM" type="submit">Save!</button>
   </form>

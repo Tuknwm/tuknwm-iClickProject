@@ -41,24 +41,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function deleteAccount() {
-  fetch('/api/user/delete', {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    credentials: 'same-origin'
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed To Delete Account');
-    }
-    return response.json();
-  })
-  .then(data => {
-    window.location.href = '/login';
-  })
-  .catch(error => {
-    console.error('Error deleting account:', error);
-    alert('Failed To Delete Account. Please Try Again.');
-  });
+  window.location.href = '/';
 }

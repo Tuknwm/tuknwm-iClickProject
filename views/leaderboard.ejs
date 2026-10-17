@@ -9,14 +9,13 @@
                 <button class="tmblModeT" data-timemode="10">10 Seconds</button>
                 <button class="tmblModeT" data-timemode="15">15 Seconds</button>
             </div>
-            
             <div class="KotakModeGame">
                 <h3>Game Mode</h3>
                 <button class="tmblModeG active" data-clickmode="mouse">Mouse</button>
                 <button class="tmblModeG" data-clickmode="keyboard">Keyboard</button>
             </div>
         </div>
-        
+
         <div class="BoxLeaderBoard">
             <p>LeaderBoard</p>
 
@@ -27,18 +26,7 @@
                         <span class="j_nameplayer">Player</span>
                         <span class="j_scoreplayer">Score</span>
                     </div>
-                    
-                    <% if (typeof scores5sMouse !== 'undefined' && scores5sMouse.length > 0) { %>
-                        <% scores5sMouse.forEach((score, index) => { %>
-                            <div class="tabelisiLeaderboard">
-                                <span class="i_norank"><%= index + 1 %></span>
-                                <span class="i_nameplayer"><%= score.namaUser %></span>
-                                <span class="i_scoreplayer"><%= score.score %></span>
-                            </div>
-                        <% }); %>
-                    <% } else { %>
-                        <div class="infoLeaderboard">Belum Ada Player Yang Memainkannya</div>
-                    <% } %>
+                    <div class="infoLeaderboard">No players yet</div>
                 </div>
             </div>
 
@@ -49,18 +37,7 @@
                         <span class="j_nameplayer">Player</span>
                         <span class="j_scoreplayer">Score</span>
                     </div>
-                    
-                    <% if (typeof scores5sKeyboard !== 'undefined' && scores5sKeyboard.length > 0) { %>
-                        <% scores5sKeyboard.forEach((score, index) => { %>
-                            <div class="tabelisiLeaderboard">
-                                <span class="i_norank"><%= index + 1 %></span>
-                                <span class="i_nameplayer"><%= score.namaUser %></span>
-                                <span class="i_scoreplayer"><%= score.score %></span>
-                            </div>
-                        <% }); %>
-                    <% } else { %>
-                        <div class="infoLeaderboard">Belum Ada Player Yang Memainkannya</div>
-                    <% } %>
+                    <div class="infoLeaderboard">No players yet</div>
                 </div>
             </div>
 
@@ -71,21 +48,10 @@
                         <span class="j_nameplayer">Player</span>
                         <span class="j_scoreplayer">Score</span>
                     </div>
-                    
-                    <% if (typeof scores10sMouse !== 'undefined' && scores10sMouse.length > 0) { %>
-                        <% scores10sMouse.forEach((score, index) => { %>
-                            <div class="tabelisiLeaderboard">
-                                <span class="i_norank"><%= index + 1 %></span>
-                                <span class="i_nameplayer"><%= score.namaUser %></span>
-                                <span class="i_scoreplayer"><%= score.score %></span>
-                            </div>
-                        <% }); %>
-                    <% } else { %>
-                        <div class="infoLeaderboard">Belum Ada Player Yang Memainkannya</div>
-                    <% } %>
+                    <div class="infoLeaderboard">No players yet</div>
                 </div>
             </div>
-            
+
             <div class="dislpayLeaderboard" id="leaderboard-10-keyboard">
                 <div class="tabelLeaderboard">
                     <div class="tabeljudulLeaderboard">
@@ -93,21 +59,10 @@
                         <span class="j_nameplayer">Player</span>
                         <span class="j_scoreplayer">Score</span>
                     </div>
-                    
-                    <% if (typeof scores10sKeyboard !== 'undefined' && scores10sKeyboard.length > 0) { %>
-                        <% scores10sKeyboard.forEach((score, index) => { %>
-                            <div class="tabelisiLeaderboard">
-                                <span class="i_norank"><%= index + 1 %></span>
-                                <span class="i_nameplayer"><%= score.namaUser %></span>
-                                <span class="i_scoreplayer"><%= score.score %></span>
-                            </div>
-                        <% }); %>
-                    <% } else { %>
-                        <div class="infoLeaderboard">Belum Ada Player Yang Memainkannya</div>
-                    <% } %>
+                    <div class="infoLeaderboard">No players yet</div>
                 </div>
             </div>
-            
+
             <div class="dislpayLeaderboard" id="leaderboard-15-mouse">
                 <div class="tabelLeaderboard">
                     <div class="tabeljudulLeaderboard">
@@ -115,21 +70,10 @@
                         <span class="j_nameplayer">Player</span>
                         <span class="j_scoreplayer">Score</span>
                     </div>
-                    
-                    <% if (typeof scores15sMouse !== 'undefined' && scores15sMouse.length > 0) { %>
-                        <% scores15sMouse.forEach((score, index) => { %>
-                            <div class="tabelisiLeaderboard">
-                                <span class="i_norank"><%= index + 1 %></span>
-                                <span class="i_nameplayer"><%= score.namaUser %></span>
-                                <span class="i_scoreplayer"><%= score.score %></span>
-                            </div>
-                        <% }); %>
-                    <% } else { %>
-                        <div class="infoLeaderboard">Belum Ada Player Yang Memainkannya</div>
-                    <% } %>
+                    <div class="infoLeaderboard">No players yet</div>
                 </div>
             </div>
-            
+
             <div class="dislpayLeaderboard" id="leaderboard-15-keyboard">
                 <div class="tabelLeaderboard">
                     <div class="tabeljudulLeaderboard">
@@ -137,34 +81,9 @@
                         <span class="j_nameplayer">Player</span>
                         <span class="j_scoreplayer">Score</span>
                     </div>
-                    
-                    <% if (typeof scores15sKeyboard !== 'undefined' && scores15sKeyboard.length > 0) { %>
-                        <% scores15sKeyboard.forEach((score, index) => { %>
-                            <div class="tabelisiLeaderboard">
-                                <span class="i_norank"><%= index + 1 %></span>
-                                <span class="i_nameplayer"><%= score.namaUser %></span>
-                                <span class="i_scoreplayer"><%= score.score %></span>
-                            </div>
-                        <% }); %>
-                    <% } else { %>
-                        <div class="infoLeaderboard">Belum Ada Player Yang Memainkannya</div>
-                    <% } %>
+                    <div class="infoLeaderboard">No players yet</div>
                 </div>
             </div>
-
-            <% if (locals.session && locals.session.user) { %>
-            <div class="InfoRankUser">
-                <span class="asam">A</span>
-                <div class="userRankContainer">
-                    <span class="userRankLoading"></span>
-                    <div class="userRankData" style="display:none;">
-                        <span class="d_norank user-rank">-</span>
-                        <span class="d_nameplayer user-name">-</span>
-                        <span class="d_scoreplayer user-score">-</span>
-                    </div>
-                </div>
-            </div>
-            <% } %>
         </div>
     </div>
 </div>
@@ -179,10 +98,6 @@
     </div>
 </div>
 
-
-<button class="deleteScore" style="display: none;">
-    <p class="DelSco">Delete</p>
-</button>
-
+<button class="deleteScore" style="display:none;"><p class="DelSco">Delete</p></button>
 
 <script src="/js/Leaderboard.js"></script>

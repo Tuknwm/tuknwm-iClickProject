@@ -11,12 +11,169 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+      @font-face {
+        font-family: 'DM Sans';
+        font-style: normal;
+        font-weight: 800;
+        font-display: swap;
+        src: url('/fonts/DMSans-ExtraBold.ttf') format('truetype');
+      }
+      body { animation: pageIn 0.35s ease both; }
+      @keyframes pageIn  { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+      body.page-exit     { animation: pageOut 0.28s ease forwards; pointer-events:none; }
+      @keyframes pageOut { to   { opacity:0; transform:translateY(-10px); } }
+    </style>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/Default.css" />
     <link id="mainStyleSheet" rel="stylesheet" href="/css/main.css" />
     <link id="styleSheet" rel="stylesheet" href="/css/result.css" />
   </head>
   <body>
+  <div id="loading-overlay" style="position:fixed;inset:0;background:#000;z-index:9999;font-family:'Montserrat',sans-serif;color:#fff;overflow:hidden;clip-path:url(#lo-curveClip);">
+    <svg style="width:0;height:0;position:absolute;">
+      <defs>
+        <clipPath id="lo-curveClip" clipPathUnits="objectBoundingBox">
+          <path id="lo-curvePath" d="M 0,0 L 1,0 L 1,1 Q 0.5,1 0,1 Z" />
+        </clipPath>
+      </defs>
+    </svg>
+
+    <div style="position:absolute;top:25px;left:25px;z-index:10;">
+      <div id="lo-date" style="font-size:11px;opacity:.5;text-transform:uppercase;letter-spacing:1px;"></div>
+      <div id="lo-time" style="font-size:24px;font-weight:900;"></div>
+    </div>
+
+    <div class="lo-bottom-left" style="position:absolute;bottom:25px;left:25px;font-size:14px;font-weight:300;letter-spacing:3px;text-transform:uppercase;opacity:.6;z-index:10;">
+      Tuknwm
+    </div>
+
+    <div id="lo-emoji" style="position:absolute;bottom:25px;right:25px;font-size:24px;opacity:0;transform:translateY(20px);z-index:10;">
+      ＞︿＜
+    </div>
+
+    <div class="lo-container" style="display:flex;justify-content:center;align-items:center;width:100%;height:100%;">
+      <svg id="lo-svg" viewBox="0 0 1000 300" style="width:100%;max-width:900px;overflow:visible;">
+        <g id="lo-text-group" transform="translate(500,150)">
+          <g class="lo-char-unit lo-left" transform="translate(-180,0)">
+            <text text-anchor="middle" dominant-baseline="middle" font-size="90" font-weight="bold" style="fill:transparent;stroke:#333;stroke-width:1.5;stroke-linecap:round;" class="lo-text-path">く</text>
+            <text text-anchor="middle" dominant-baseline="middle" font-size="90" font-weight="bold" style="fill:#fff;opacity:0;filter:drop-shadow(0 0 8px rgba(255,255,255,0.8));" class="lo-char-fill">く</text>
+          </g>
+          <g class="lo-char-unit lo-left" transform="translate(-90,0)">
+            <text text-anchor="middle" dominant-baseline="middle" font-size="90" font-weight="bold" style="fill:transparent;stroke:#333;stroke-width:1.5;stroke-linecap:round;" class="lo-text-path">ろ</text>
+            <text text-anchor="middle" dominant-baseline="middle" font-size="90" font-weight="bold" style="fill:#fff;opacity:0;filter:drop-shadow(0 0 8px rgba(255,255,255,0.8));" class="lo-char-fill">ろ</text>
+          </g>
+          <g class="lo-char-unit lo-right" transform="translate(0,0)">
+            <text text-anchor="middle" dominant-baseline="middle" font-size="90" font-weight="bold" style="fill:transparent;stroke:#333;stroke-width:1.5;stroke-linecap:round;" class="lo-text-path">き</text>
+            <text text-anchor="middle" dominant-baseline="middle" font-size="90" font-weight="bold" style="fill:#fff;opacity:0;filter:drop-shadow(0 0 8px rgba(255,255,255,0.8));" class="lo-char-fill">き</text>
+          </g>
+          <g class="lo-char-unit lo-right" transform="translate(90,0)">
+            <text text-anchor="middle" dominant-baseline="middle" font-size="90" font-weight="bold" style="fill:transparent;stroke:#333;stroke-width:1.5;stroke-linecap:round;" class="lo-text-path">ゅ</text>
+            <text text-anchor="middle" dominant-baseline="middle" font-size="90" font-weight="bold" style="fill:#fff;opacity:0;filter:drop-shadow(0 0 8px rgba(255,255,255,0.8));" class="lo-char-fill">ゅ</text>
+          </g>
+          <g class="lo-char-unit lo-right" transform="translate(180,0)">
+            <text text-anchor="middle" dominant-baseline="middle" font-size="90" font-weight="bold" style="fill:transparent;stroke:#333;stroke-width:1.5;stroke-linecap:round;" class="lo-text-path">う</text>
+            <text text-anchor="middle" dominant-baseline="middle" font-size="90" font-weight="bold" style="fill:#fff;opacity:0;filter:drop-shadow(0 0 8px rgba(255,255,255,0.8));" class="lo-char-fill">う</text>
+          </g>
+        </g>
+        <g transform="translate(500,150) scale(1,0.85)">
+          <text id="lo-latin-stroke" text-anchor="middle" dominant-baseline="middle"
+            style="fill:transparent;stroke:rgba(255,255,255,0.22);stroke-width:1;font-size:148px;font-family:'DM Sans',Montserrat,sans-serif;font-weight:800;letter-spacing:10px;">
+            KUROKYU
+          </text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+  (function () {
+    var overlay = document.getElementById('loading-overlay');
+    if (sessionStorage.getItem('hasVisited')) {
+      overlay.style.display = 'none';
+      return;
+    }
+
+    var clockId = setInterval(function () {
+      var now = new Date();
+      document.getElementById('lo-time').textContent = now.toLocaleTimeString('en-US', { hour12: false });
+      document.getElementById('lo-date').textContent = now.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' });
+    }, 1000);
+    (function tick() { clockId && tick; })(); // trigger first tick
+    var now = new Date();
+    document.getElementById('lo-time').textContent = now.toLocaleTimeString('en-US', { hour12: false });
+    document.getElementById('lo-date').textContent = now.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' });
+
+    var latinStroke = document.getElementById('lo-latin-stroke');
+    var curvePath   = document.getElementById('lo-curvePath');
+    var emojiEl     = document.getElementById('lo-emoji');
+    var pathLength  = (latinStroke.getComputedTextLength ? latinStroke.getComputedTextLength() : 600) * 2 || 1200;
+
+    gsap.set('#lo-text-group', { scale: 2, opacity: 0 });
+    gsap.set(latinStroke, { strokeDasharray: pathLength, strokeDashoffset: pathLength, opacity: 0 });
+
+    var flicker = function (el, delay) {
+      return gsap.timeline({ delay: delay })
+        .to(el, { opacity: 0.7, duration: 0.05 })
+        .to(el, { opacity: 0.1, duration: 0.04 })
+        .to(el, { opacity: 1,   duration: 0.1, filter: 'drop-shadow(0 0 25px #fff)' });
+    };
+
+    var tl = gsap.timeline({
+      onComplete: function () {
+        clearInterval(clockId);
+        overlay.style.display = 'none';
+        sessionStorage.setItem('hasVisited', '1');
+        document.dispatchEvent(new Event('loadingDone'));
+      }
+    });
+
+    tl.to('#lo-text-group', { scale: 1, opacity: 1, duration: 1.5, ease: 'expo.out' });
+    tl.fromTo('.lo-text-path',
+      { strokeDasharray: 450, strokeDashoffset: 450 },
+      { strokeDashoffset: 0, duration: 1.5, stagger: 0.1, ease: 'power2.inOut' },
+      '-=0.5'
+    );
+
+    tl.addLabel('neon');
+    document.querySelectorAll('.lo-left .lo-char-fill').forEach(function (f, i) {
+      tl.add(flicker(f, i * 0.1), 'neon');
+    });
+    Array.from(document.querySelectorAll('.lo-right .lo-char-fill')).reverse().forEach(function (f, i) {
+      tl.add(flicker(f, i * 0.1), 'neon');
+    });
+
+    tl.addLabel('latin', '-=0.3');
+    tl.to(latinStroke, {
+      opacity: 1, duration: 0.1,
+      onComplete: function () { gsap.to(latinStroke, { opacity: 0.1, duration: 0.05, yoyo: true, repeat: 1 }); }
+    }, 'latin');
+    tl.to(latinStroke, { strokeDashoffset: 0, duration: 2.5, ease: 'power3.inOut' }, 'latin');
+    tl.to(latinStroke, { opacity: 0.18, duration: 1.5 }, '-=0.5');
+
+    tl.to(emojiEl, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out' }, '+=0.5');
+
+    tl.addLabel('exit', '+=1.5');
+    tl.to('.lo-bottom-left, #lo-emoji, .lo-container', { opacity: 0, y: -20, duration: 0.5, stagger: 0.05 }, 'exit');
+    tl.to(curvePath, {
+      attr: { d: 'M 0,0 L 1,0 L 1,0 Q 0.5,-0.2 0,0 Z' },
+      duration: 1.5, ease: 'expo.inOut',
+    }, 'exit');
+  })();
+  </script>
+
     <%- locals.session.user ? include('navbarLogin') : include('navbar') %>
-  </body>
-</html>
+
+  <script>
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('javascript') || a.target === '_blank') return;
+    if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+    e.preventDefault();
+    document.body.classList.add('page-exit');
+    setTimeout(function () { window.location.href = href; }, 280);
+  });
+  </script>

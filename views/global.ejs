@@ -8,7 +8,7 @@
     <div class="main">
         <div class="name hidden">
             <span><i class="far fa-user"></i></span>
-            <input type="text" id="name-input" class="name-input" value="<%= session.user.username %>" readonly />
+            <input type="text" id="name-input" class="name-input" value="Guest" readonly />
         </div>
 
         <ul class="message-container" id="message-container"></ul>
@@ -30,9 +30,9 @@ const messageInput = document.getElementById('message-input');
 const myName = document.getElementById('name-input').value;
 
 const dummyMessages = [
-    { name: 'Kaming', text: 'Halo semua!', time: '09:00' },
-    { name: 'Charless', text: 'Halo! ada yang mau challenge?', time: '09:01' },
-    { name: 'JoeNick', text: 'Ane siap wak 🔥', time: '09:02' },
+    { name: 'Kaming', text: 'Hello everyone!', time: '09:00' },
+    { name: 'Charless', text: 'Hello! Anyone up for a challenge?', time: '09:01' },
+    { name: 'JoeNick', text: 'I\'m ready 🔥', time: '09:02' },
 ];
 
 function addMessage(name, text, time) {

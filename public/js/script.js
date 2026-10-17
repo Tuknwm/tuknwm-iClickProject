@@ -1,4 +1,4 @@
-// Inisialisasi variabel
+// Initialize variables
 let nilaiKlik = 0;
 let permainanSelesai = false;
 let sedangBermain = false;
@@ -7,7 +7,7 @@ let modeKlik = "mouse";
 let isPlaying = false;
 let spaceKeyPressed = false;
 
-// Mengambil elemen HTML yang dibutuhkan
+// Get required HTML elements
 let tombolMain = document.querySelector(".ButtonPlay");
 let tombolUlang = document.querySelector(".BoxRestart");
 let tombolMode = document.getElementById("modeButton");
@@ -17,7 +17,7 @@ let textKecepatan = document.querySelector(".BoxKecepatan .speed-value");
 let textNilai = document.querySelector(".BoxNilai .score-value");
 let modeText = document.getElementById("modeText");
 
-// Efek suara klik
+// Click sound effects
 const mouseClickSound = new Audio("/sfx/klik2.mp3");
 const keyboardClickSound = new Audio("/sfx/spacebar.mp3");
 const countdownSound = new Audio("/sfx/countdown.mp3");
@@ -59,7 +59,7 @@ document.addEventListener("keyup", function (event) {
 
 tombolUlang.style.display = "none";
 
-// Fungsi untuk mengganti mode waktu permainan
+// Switch game time mode
 function gantiMode() {
   if (!sedangBermain) {
     if (waktuPermainan === 5) {
@@ -76,7 +76,7 @@ function gantiMode() {
 function gantiModeGame() {
   modeKlik = modeKlik === "mouse" ? "keyboard" : "mouse";
   tombolModeGame.innerText =
-    modeKlik === "keyboard" ? "Keyboard (Spasi)" : "Mouse (Klik)";
+    modeKlik === "keyboard" ? "Keyboard (Space)" : "Mouse (Click)";
 }
 
 [tombolMode, tombolModeGame].forEach((button) => {
@@ -87,12 +87,12 @@ function gantiModeGame() {
   });
 });
 
-// Fungsi untuk menghitung kecepatan klik per detik
+// Calculate clicks per second
 function hitungKecepatan(klik, waktu) {
   return (klik / waktu).toFixed(2);
 }
 
-// Fungsi untuk memulai permainan dengan hitung mundur
+// Start game with countdown
 function mulaiPermainan() {
   if (!sedangBermain && !permainanSelesai) {
     sedangBermain = true;
@@ -116,11 +116,11 @@ function mulaiPermainan() {
   }
 }
 
-// Fungsi untuk mulai permainan setelah hitung mundur selesai
+// Start actual game after countdown
 function mulaiGameAsli() {
   nilaiKlik = 0;
   permainanSelesai = false;
-  tombolMain.innerHTML = "Klik secepat mungkin!";
+  tombolMain.innerHTML = "Click as fast as you can!";
   tombolUlang.style.display = "none";
 
   let waktuMulai = Date.now();
@@ -139,14 +139,14 @@ function mulaiGameAsli() {
   }, 100);
 }
 
-// Fungsi untuk menangani klik pada tombol
+// Handle button click
 function klikDilakukan(event) {
   if (sedangBermain && modeKlik === "mouse" && event.type === "click") {
     nilaiKlik++;
   }
 }
 
-// Fungsi untuk mengakhiri permainan
+// End game
 function akhirPermainan() {
   sedangBermain = false;
   permainanSelesai = true;
@@ -156,44 +156,44 @@ function akhirPermainan() {
 
   console.log(waktuPermainan);
   let gambarPeringkat = "/image/jangkrik.png";
-  let teksPeringkat = "Tetap semangat dan coba lagi!";
+  let teksPeringkat = "Keep going and try again!";
 
   if (waktuPermainan === 5) {
     if (nilaiKlik >= 50) {
       gambarPeringkat = "/image/cheetah.png";
-      teksPeringkat = "Peringkat = Legend\n Kecepatan Yang Sangat Luar Biasa!";
+      teksPeringkat = "Rank = Legend\n Incredible speed!";
     } else if (nilaiKlik >= 30) {
       gambarPeringkat = "/image/kelinci.png";
-      teksPeringkat = "Peringkat = Pro\n Lumayan 😁 Tidak Buruk Juga!";
+      teksPeringkat = "Rank = Pro\n Not bad at all! 😁";
     } else if (nilaiKlik >= 10) {
       gambarPeringkat = "/image/kura2.png";
-      teksPeringkat = "Peringkat = Amatir\n Tetap semangat dan coba lagi!";
+      teksPeringkat = "Rank = Amateur\n Keep going and try again!";
     }
   } else if (waktuPermainan === 10) {
     if (nilaiKlik >= 100) {
       gambarPeringkat = "/image/cheetah.png";
-      teksPeringkat = "Peringkat = Legend\n Kecepatan Yang Sangat Luar Biasa!";
+      teksPeringkat = "Rank = Legend\n Incredible speed!";
     } else if (nilaiKlik >= 60) {
       gambarPeringkat = "/image/kelinci.png";
-      teksPeringkat = "Peringkat = Pro\n Lumayan 😁 Tidak Buruk Juga!";
+      teksPeringkat = "Rank = Pro\n Not bad at all! 😁";
     } else if (nilaiKlik >= 30) {
       gambarPeringkat = "/image/kura2.png";
-      teksPeringkat = "Peringkat = Amatir\n Tetap semangat dan coba lagi!";
+      teksPeringkat = "Rank = Amateur\n Keep going and try again!";
     }
   } else if (waktuPermainan === 15) {
     if (nilaiKlik >= 150) {
       gambarPeringkat = "/image/cheetah.png";
-      teksPeringkat = "Peringkat = Legend\n Kecepatan Yang Sangat Luar Biasa!";
+      teksPeringkat = "Rank = Legend\n Incredible speed!";
     } else if (nilaiKlik >= 100) {
       gambarPeringkat = "/image/kelinci.png";
-      teksPeringkat = "Peringkat = Pro\n Lumayan 😁 Tidak Buruk Juga!";
+      teksPeringkat = "Rank = Pro\n Not bad at all! 😁";
     } else if (nilaiKlik >= 50) {
       gambarPeringkat = "/image/kura2.png";
-      teksPeringkat = "Peringkat = Amatir\n Tetap semangat dan coba lagi!";
+      teksPeringkat = "Rank = Amateur\n Keep going and try again!";
     }
   }
 
-  tombolMain.innerHTML = "Permainan Selesai!";
+  tombolMain.innerHTML = "Game Over!";
 
   let imgRank = document.getElementById("rankImage");
   let textRank = document.getElementById("rankText");
@@ -212,34 +212,10 @@ function akhirPermainan() {
     clickmode: modeKlik
   };
 
-  console.log('Sending score data:', scoreData);
-
-  fetch('/leaderboard/saveScore', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(scoreData)
-  })
-    .then(response => {
-      if (!response.ok) {
-        return response.json().then(err => {
-          throw new Error(JSON.stringify(err));
-        });
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Score saved successfully:', data);
-      tampilkanHasil();
-    })
-    .catch(error => {
-      console.error('Error saving score:', error);
-      tampilkanHasil();
-    });
+  tampilkanHasil();
 }
 
-// Fungsi untuk menampilkan hasil permainan dan beralih ke result.css
+// Show game results and switch to result.css
 function tampilkanHasil() {
   document.querySelector(".RoundedBox").classList.add("fade-out");
 
@@ -258,9 +234,9 @@ function tampilkanHasil() {
     document.getElementById("scoreValue").innerText = nilaiKlik;
 
     if (modeKlik === "keyboard") {
-      modeText.innerText = "Mode: Keyboard (Spasi)";
+      modeText.innerText = "Mode: Keyboard (Space)";
     } else {
-      modeText.innerText = "Mode: Mouse (Klik)";
+      modeText.innerText = "Mode: Mouse (Click)";
     }
 
     document.getElementById("restartButton").style.display = "flex";
@@ -269,7 +245,7 @@ function tampilkanHasil() {
   }, 500);
 }
 
-// Fungsi untuk restart permainan
+// Restart game
 function ulangPermainan() {
   document.getElementById("resultContainer").classList.add("fade-out");
 
@@ -283,7 +259,7 @@ function ulangPermainan() {
     textTimer.innerHTML = " ";
     textKecepatan.innerHTML = " ";
     textNilai.innerHTML = " ";
-    tombolMain.innerHTML = "Klik disini untuk mulai 🔥";
+    tombolMain.innerHTML = "Click here to start 🔥";
     nilaiKlik = 0;
     sedangBermain = false;
     permainanSelesai = false;
@@ -296,7 +272,7 @@ function ulangPermainan() {
   }, 500);
 }
 
-// Fungsi efek ripple saat tombol diklik
+// Ripple effect on button click
 function buatEfekRipple(event) {
   let tombol = event.currentTarget;
   let ripple = document.createElement("span");
@@ -315,7 +291,7 @@ function buatEfekRipple(event) {
   }, 600);
 }
 
-// Fungsi untuk membuat efek ripple saat tombol spasi ditekan
+// Ripple effect on spacebar press
 function buatEfekRippleKeyboard() {
   let tombol = tombolMain;
   let ripple = document.createElement("span");
@@ -341,7 +317,7 @@ document.body.addEventListener("click", function (event) {
   }
 });
 
-// Event listener untuk tombol dalam permainan
+// Event listeners for game buttons
 tombolMain.addEventListener("click", mulaiPermainan);
 tombolUlang.addEventListener("click", ulangPermainan);
 tombolMode.addEventListener("click", gantiMode);
@@ -359,7 +335,7 @@ document
   .getElementById("startButton")
   .addEventListener("click", playClickSound);
 
-// Efek suara latar belakang
+// Background music
 function toggleMusic() {
   if (isPlaying) {
     bgMusic.pause();
@@ -371,58 +347,9 @@ function toggleMusic() {
   }
 }
 
-document.getElementById("musicButton").addEventListener("click", toggleMusic);
 
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelector(".content").classList.add("fade-in");
-});
-
-// Fungsi untuk menampilkan leaderboard
+// Load leaderboard (no backend — show empty state)
 function loadLeaderboard(timeMode, clickMode) {
   const leaderboardContainer = document.querySelector(".BoxLeaderBoard");
-  
-  leaderboardContainer.innerHTML = '<p>LeaderBoard</p><div class="leaderboard-loading">Loading...</div>';
-
-  fetch(`/leaderboard/api/scores?timemode=${timeMode}&clickmode=${clickMode}`)
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Failed to fetch leaderboard data');
-          }
-          return response.json();
-      })
-      .then(scores => {
-          let leaderboardHTML = `
-              <p>LeaderBoard</p>
-              <div class="leaderboard-table">
-                  <div class="leaderboard-header">
-                      <span class="rank-header">Rank</span>
-                      <span class="player-header">Player</span>
-                      <span class="score-header">Score</span>
-                  </div>
-          `;
-          
-          if (scores.length > 0) {
-              scores.forEach((score, index) => {
-                  leaderboardHTML += `
-                      <div class="leaderboard-row">
-                          <span class="rank-cell">${index + 1}</span>
-                          <span class="player-cell">${score.username}</span>
-                          <span class="score-cell">${score.score}</span>
-                      </div>
-                  `;
-              });
-          } else {
-              leaderboardHTML += `
-                  <div class="leaderboard-empty">No scores available for this mode</div>
-              `;
-          }
-          
-          leaderboardHTML += `</div>`;
-          
-          leaderboardContainer.innerHTML = leaderboardHTML;
-      })
-      .catch(error => {
-          console.error('Error loading leaderboard:', error);
-          leaderboardContainer.innerHTML = '<p>LeaderBoard</p><div class="leaderboard-error">Failed to load leaderboard data</div>';
-      });
+  leaderboardContainer.innerHTML = '<p>LeaderBoard</p><div class="leaderboard-empty">No scores available</div>';
 }

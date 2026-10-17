@@ -1,47 +1,32 @@
 # iClick - Click Speed Test Game
 
-> ⚠️ **Catatan:** Ini adalah project lama. Tampilan UI merupakan pertama kali membuat website, sehingga desain masih sangat sederhana dan jauh dari sempurna. Ini hasil clone dan terdapat penyesuaian.
+> ⚠️ **Note:** This is an old demo project that is no longer actively maintained. Some features (leaderboard, friends, chat, profile) are UI-only and do not have backend functionality.
 
-## Deskripsi
+## Description
 
-iClick adalah sebuah permainan sederhana berbasis teknologi back-end yang dapat dijalankan melalui website.
+iClick is a simple click speed test game. Players must click as many times as possible within a set time limit. The game includes rank results based on your score.
 
-Pada permainan ini pemain harus mengklik sebanyak mungkin dalam waktu tertentu. Game ini juga memiliki beberapa fitur menarik yang membuatnya lebih menantang dan seru jika dimainkan.
+## Features
 
-## Fitur
+- **Game modes:**
+  - Mouse click mode
+  - Spacebar (keyboard) mode
+- **Time options:** 5s / 10s / 15s
+- **Rank system** — get ranked based on your click count
+- **Sound effects** — click sounds and background music
+- **UI pages** — Leaderboard, Friends, Chat, Profile (display only)
 
-- **Mode permainan:**
-    - Mode klik dengan mouse
-    - Mode klik dengan spasi (keyboard)
-- **Pilihan waktu:**
-    - 5 detik
-    - 10 detik
-    - 15 detik
-- **Profil** — pemain dapat membuat akun agar hasil akhir dapat disimpan
-- **Leaderboard** — papan peringkat berdasarkan jumlah klik tertinggi
-- **Friends** — pemain dapat menambahkan teman dan melihat skor mereka
-- **Chat** — public chat antar pemain
-- **Music & Sound Effect** — background music dan efek suara saat bermain
+## Tech Stack
 
-## Teknologi
+**Backend:** Node.js, Express.js
 
-**Back-end:** Node.js, Express.js
+**Frontend:** EJS, CSS, JavaScript
 
-**Front-end:** EJS, CSS, JavaScript
-
-**Database:** NeDB (lokal, in-memory)
-
-## Cara Menjalankan
+## How to Run
 
 ```bash
 npm install
-npm start
+node server.js
 ```
 
-Buka browser dan akses `http://localhost:3000`
-
-## Credits
-
-- Kaming
-- Joe Nickson Lie
-- Charless
+Open your browser and go to `http://localhost:3000`

@@ -28,7 +28,7 @@
   <div class="KotakGridLog">
     <div class="KotakLoginLog">
       <h2>Login</h2>
-      <form action="/login" method="POST">
+      <form onsubmit="return false;">
         <label for="username">Username:</label>
         <input
           type="text"
@@ -47,13 +47,8 @@
           required
         />
 
-        <p class="PsnErrorLog">
-          <%= typeof errorMessage !== 'undefined' ? errorMessage : '' %>
-        </p>
-
-        <p class="PsnSuccessLog">
-          <%= typeof successMessage !== 'undefined' ? successMessage : '' %>
-        </p>
+        <p class="PsnErrorLog"></p>
+        <p class="PsnSuccessLog"></p>
 
         <button type="submit" class="SubmitLog">Login</button>
       </form>

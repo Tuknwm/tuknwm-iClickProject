@@ -1,11 +1,5 @@
 <%- include('partials/header.ejs') %>
 
-<% if (locals.isLoggedIn) { %>
-  <body data-just-logged-in="true">
-<% } else { %>
-  <body>
-<% } %>
-
 <div class="RoundedBox">
   <div class="ContainerBoxModeText">
     <h1 class="clicking-counter">Clicking Counter</h1>
@@ -17,7 +11,7 @@
 
   <div class="ContainerBoxModeButton">
     <div class="BoxModeGame">
-      <button id="ModeGameButton">Mouse (Klik)</button>
+      <button id="ModeGameButton">Mouse (Click)</button>
     </div>
 
     <div class="mode-selector">
@@ -41,7 +35,7 @@
   </div>
 
   <div class="ButtonPlay" id="startButton">
-    <p class="montserrat-Text">Klik disini untuk mulai 🔥</p>
+    <p class="montserrat-Text">Click here to start 🔥</p>
     <audio id="clickSound" src="sfx/klik2.mp3"></audio>
   </div>
 </div>
@@ -72,14 +66,12 @@
       <div class="ContainerBoxKanan">
         <div id="modeText" class="BoxTextMode"></div>
         <div class="peringkatContainer">
-          <img id="rankImage" class="hidden" src="" alt="Peringkat Gambar" />
+          <img id="rankImage" class="hidden" src="" alt="Rank Image" />
           <p id="rankText" class="hidden"></p>
         </div>
 
         <div class="BoxRestart" id="restartButton">Restart</div>
-        <% if (!locals.session || !locals.session.user) { %>
           <p class="infoGuest">- Login To Save Your Score -</p>
-        <% } %>
       </div>
     </div>
   </div>
