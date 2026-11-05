@@ -107,7 +107,7 @@ function MusicVisualizer({ audio, active }) {
     }
     rafRef.current = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(rafRef.current)
-  }, [audio, active])
+  }, [audio])
   return <canvas ref={canvasRef} className="music-viz" width={56} height={40} />
 }
 
